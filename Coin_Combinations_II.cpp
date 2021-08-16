@@ -1,3 +1,5 @@
+// cses
+
 #include <bits/stdc++.h>
 
 #define ll long long
@@ -48,6 +50,29 @@ int main()
 #endif
 
     // Your code here
+    ll n, target;
+    cin >> n >> target;
+    vector<ll> coins(n);
+    vector<ll> dp(target + 1, 0);
 
+    for (ll &i : coins)
+    {
+        cin >> i;
+    }
+
+    dp[0] = 1;
+    for (int i = 1; i < n + 1; i++)
+    {
+        for (int j = 1; j < target + 1; j++)
+        {
+            if (j - coins[i - 1] >= 0)
+            {
+                (dp[j] += dp[j - coins[i - 1]]) %= mod;
+            }
+        }
+        // print(dp);
+    }
+    // print(dp);
+    cout << dp[target];
     return 0;
 }
