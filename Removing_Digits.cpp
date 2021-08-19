@@ -1,3 +1,5 @@
+// cses
+
 #include <bits/stdc++.h>
 
 #define ll long long int
@@ -48,6 +50,21 @@ int main()
 #endif
 
     // Your code here
-
+    int n;
+    cin >> n;
+    vector<ll> dp(n + 1, 0);
+    for (int i = 1; i < n + 1; i++)
+    {
+        string temp;
+        temp = to_string(i);
+        ll max_ele = 0;
+        for (int j = 0; j < temp.size(); j++)
+        {
+            max_ele = max(max_ele, (ll)temp[j] - '0');
+        }
+        dp[i] = dp[i - max_ele] + 1;
+    }
+    // print(dp);
+    cout << dp[n];
     return 0;
 }
